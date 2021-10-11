@@ -1,4 +1,4 @@
-# eat18
+# eat18기 오프라인 소모임 조배정
 
 ```bash
 $ python team.py
