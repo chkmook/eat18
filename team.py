@@ -181,16 +181,23 @@ OBs_n = len(OBs)
 
 
 if (vac_n/non_vac_n) > (valible_vac_n/valible_non_vac_n) : # 접종자가 꽤 있는 경우
-    team_n = vac_n//valible_vac_n + vac_n%valible_vac_n
+    if vac_n%valible_vac_n == 0:
+        team_n = vac_n//valible_vac_n
+    else:
+        team_n = vac_n//valible_vac_n + 1
+
     print("총", team_n, "팀")
 
     participants, results, leaders =  select_leaders(participants, results, heads, mentors, OBs, team_n)
     # 접종자 수 기준으로 팀 개수 설정. 접종자 먼저 채우고 미접종자 채우기
-    participants, results = fill_vac(participants, results, team_n)
     participants, results = fill_non_vac(participants, results, team_n)
+    participants, results = fill_vac(participants, results, team_n)
 
 else: # 접종자가 많지 않은 경우
-    team_n = non_vac_n//valible_non_vac_n + non_vac_n%valible_non_vac_n
+    if vac_n%valible_vac_n == 0:
+        team_n = non_vac_n//valible_non_vac_n
+    else:
+        team_n = non_vac_n//valible_non_vac_n + 1
     print("총", team_n, "팀")
 
     participants, results, leaders =  select_leaders(participants, results, heads, mentors, OBs, team_n)
